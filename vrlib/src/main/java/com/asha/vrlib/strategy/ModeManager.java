@@ -2,6 +2,7 @@ package com.asha.vrlib.strategy;
 
 
 import android.content.Context;
+import android.util.Log;
 
 import com.asha.vrlib.MDVRLibrary;
 import com.asha.vrlib.common.MDGLHandler;
@@ -71,6 +72,7 @@ public abstract class ModeManager<T extends IModeStrategy> {
     }
 
     public void switchMode(final Context context, final int mode){
+        Log.e("[TT]", "ModeManager switchMode mode: " + mode);
         if (mode == getMode()) return;
         mMode = mode;
 

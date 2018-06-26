@@ -2,6 +2,7 @@ package com.asha.vrlib.strategy.interactive;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 
 import com.asha.vrlib.MD360Director;
 
@@ -19,6 +20,7 @@ public class TouchStrategy extends AbsInteractiveStrategy {
 
     public TouchStrategy(InteractiveModeManager.Params params) {
         super(params);
+        Log.e("[TT]", Thread.currentThread().getStackTrace()[2].getFileName()+":"+Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+Thread.currentThread().getStackTrace()[2].getMethodName());
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.asha.vrlib.strategy.interactive;
 
 import android.content.Context;
 import android.hardware.SensorEventListener;
+import android.util.Log;
 
 import com.asha.vrlib.MDVRLibrary;
 import com.asha.vrlib.common.MDGLHandler;
@@ -44,6 +45,7 @@ public class InteractiveModeManager extends ModeManager<AbsInteractiveStrategy> 
 
     @Override
     protected AbsInteractiveStrategy createStrategy(int mode) {
+        Log.e("[TT]", "InteractiveModeManager createStrategy mode: " + mode);
         switch (mode){
             case MDVRLibrary.INTERACTIVE_MODE_MOTION:
                 return new MotionStrategy(mParams);

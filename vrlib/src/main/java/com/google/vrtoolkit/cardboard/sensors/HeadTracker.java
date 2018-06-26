@@ -11,6 +11,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.opengl.Matrix;
+import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
@@ -55,6 +56,7 @@ public class HeadTracker implements SensorEventListener {
     }
 
     public HeadTracker(SensorEventProvider sensorEventProvider, Clock clock, Display display) {
+        Log.e("[TT]", Thread.currentThread().getStackTrace()[2].getFileName()+":"+Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+Thread.currentThread().getStackTrace()[2].getMethodName());
         this.clock = clock;
         this.sensorEventProvider = sensorEventProvider;
         this.tracker = new OrientationEKF();
@@ -65,7 +67,9 @@ public class HeadTracker implements SensorEventListener {
 
     public void onSensorChanged(SensorEvent event) {
         Object var2;
+        //Log.e("[TT]", "onSensorChanged event.sensor.type: " + event.sensor.getType());
         if(event.sensor.getType() == 1) {
+            //Log.e("[TT]", "onSensorChanged acc");
             this.latestAcc.set((double)event.values[0], (double)event.values[1], (double)event.values[2]);
             this.tracker.processAcc(this.latestAcc, event.timestamp);
             var2 = this.gyroBiasEstimatorMutex;
@@ -75,6 +79,7 @@ public class HeadTracker implements SensorEventListener {
                 }
             }
         } else if(event.sensor.getType() == 4 || event.sensor.getType() == 16) {
+            //Log.e("[TT]", "onSensorChanged gyro");
             this.latestGyroEventClockTimeNs = this.clock.nanoTime();
             if(event.sensor.getType() == 16) {
                 if(this.firstGyroValue && event.values.length == 6) {
@@ -108,6 +113,7 @@ public class HeadTracker implements SensorEventListener {
 
     public void startTracking() {
         if(!this.tracking) {
+            Log.e("[TT]", Thread.currentThread().getStackTrace()[2].getFileName()+":"+Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+Thread.currentThread().getStackTrace()[2].getMethodName());
             this.tracker.reset();
             Object var1 = this.gyroBiasEstimatorMutex;
             synchronized(this.gyroBiasEstimatorMutex) {

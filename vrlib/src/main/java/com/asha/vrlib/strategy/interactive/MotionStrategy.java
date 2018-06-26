@@ -36,6 +36,7 @@ public class MotionStrategy extends AbsInteractiveStrategy implements SensorEven
 
     public MotionStrategy(InteractiveModeManager.Params params) {
         super(params);
+        Log.e("[TT]", Thread.currentThread().getStackTrace()[2].getFileName()+":"+Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+Thread.currentThread().getStackTrace()[2].getMethodName());
     }
 
     @Override

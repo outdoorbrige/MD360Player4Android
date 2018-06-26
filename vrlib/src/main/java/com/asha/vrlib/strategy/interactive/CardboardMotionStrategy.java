@@ -39,6 +39,7 @@ public class CardboardMotionStrategy extends AbsInteractiveStrategy implements S
 
     public CardboardMotionStrategy(InteractiveModeManager.Params params) {
         super(params);
+        Log.e("[TT]", Thread.currentThread().getStackTrace()[2].getFileName()+":"+Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+Thread.currentThread().getStackTrace()[2].getMethodName());
     }
 
     @Override
@@ -81,11 +82,17 @@ public class CardboardMotionStrategy extends AbsInteractiveStrategy implements S
 
     @Override
     public boolean isSupport(Context context) {
+        Log.e("[TT]", "CardboardMotionStrategy isSupport: " + mIsSupport);
         if (mIsSupport == null){
             SensorManager mSensorManager = (SensorManager) context
                     .getSystemService(Context.SENSOR_SERVICE);
             Sensor sensor1 = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
             Sensor sensor2 = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+            Sensor sensor3 = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+
+            Log.e("[TT]", "CardboardMotionStrategy sensor1: " + sensor1);
+            Log.e("[TT]", "CardboardMotionStrategy sensor2: " + sensor2);
+            Log.e("[TT]", "CardboardMotionStrategy sensor3: " + sensor3);
             mIsSupport = (sensor1 != null || sensor2 != null);
         }
         return mIsSupport;
@@ -93,7 +100,7 @@ public class CardboardMotionStrategy extends AbsInteractiveStrategy implements S
 
     private void registerSensor(Context context){
         if (mRegistered) return;
-
+        Log.e("[TT]", Thread.currentThread().getStackTrace()[2].getFileName()+":"+Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+Thread.currentThread().getStackTrace()[2].getMethodName());
         SensorManager mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         Sensor sensor1 = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         Sensor sensor2 = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);

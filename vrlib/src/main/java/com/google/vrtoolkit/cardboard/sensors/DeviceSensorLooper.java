@@ -28,12 +28,14 @@ public class DeviceSensorLooper implements SensorEventProvider {
     private int level;
 
     public DeviceSensorLooper(SensorManager sensorManager, int level) {
+        Log.e("[TT]", Thread.currentThread().getStackTrace()[2].getFileName()+":"+Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+Thread.currentThread().getStackTrace()[2].getMethodName());
         this.sensorManager = sensorManager;
         this.level = level;
     }
 
     public DeviceSensorLooper(SensorManager sensorManager) {
         this(sensorManager, 0);
+        Log.e("[TT]", Thread.currentThread().getStackTrace()[2].getFileName()+":"+Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+Thread.currentThread().getStackTrace()[2].getMethodName());
     }
 
     private Sensor getUncalibratedGyro() {
@@ -42,6 +44,7 @@ public class DeviceSensorLooper implements SensorEventProvider {
 
     public void start() {
         if(!this.isRunning) {
+            Log.e("[TT]", Thread.currentThread().getStackTrace()[2].getFileName()+":"+Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+Thread.currentThread().getStackTrace()[2].getMethodName());
             this.sensorEventListener = new SensorEventListener() {
                 public void onSensorChanged(SensorEvent event) {
                     synchronized(DeviceSensorLooper.this.registeredListeners) {

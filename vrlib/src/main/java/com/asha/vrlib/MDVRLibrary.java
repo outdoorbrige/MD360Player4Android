@@ -280,6 +280,7 @@ public class MDVRLibrary {
      * {@link #INTERACTIVE_MODE_MOTION_WITH_TOUCH}
      */
     public void switchInteractiveMode(final Context context, final int mode){
+        Log.e("[TT]", Thread.currentThread().getStackTrace()[2].getFileName()+":"+Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+Thread.currentThread().getStackTrace()[2].getMethodName());
         mInteractiveModeManager.switchMode(context, mode);
     }
 

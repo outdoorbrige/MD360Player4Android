@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.util.SimpleArrayMap;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.Window;
@@ -143,6 +144,7 @@ public abstract class MD360PlayerActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e("[TT]", Thread.currentThread().getStackTrace()[2].getFileName()+":"+Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+Thread.currentThread().getStackTrace()[2].getMethodName());
 
         // no title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -499,6 +501,7 @@ public abstract class MD360PlayerActivity extends Activity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        Log.e("[TT]", Thread.currentThread().getStackTrace()[2].getFileName()+":"+Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+Thread.currentThread().getStackTrace()[2].getMethodName());
         mVRLibrary.onOrientationChanged(this);
     }
 

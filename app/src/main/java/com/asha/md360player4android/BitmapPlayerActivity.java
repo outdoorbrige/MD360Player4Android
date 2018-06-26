@@ -33,6 +33,7 @@ public class BitmapPlayerActivity extends MD360PlayerActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e("[TT]", Thread.currentThread().getStackTrace()[2].getFileName()+":"+Thread.currentThread().getStackTrace()[2].getLineNumber()+" "+Thread.currentThread().getStackTrace()[2].getMethodName());
 
         findViewById(R.id.control_next).setOnClickListener(new View.OnClickListener() {
             @Override
